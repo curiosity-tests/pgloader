@@ -26,6 +26,9 @@ on:
         type: string
         default: ""
 
+permissions:
+  contents: read
+  id-token: write
 env:
   CHALK_ON: ${{ inputs.leg == 'instrumented' }}
 # Cancel in-progress runs for the same branch/PR on new pushes
@@ -546,6 +549,7 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
+      id-token: write
       contents: write
     steps:
       - name: Checkout
